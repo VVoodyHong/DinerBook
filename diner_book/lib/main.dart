@@ -35,28 +35,16 @@ class _DinerBookState extends State<DinerBook> {
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 40.0,
-            color: HexColor('#6A88E5')
+            color: AppTheme.signatureColor
           ),
         ),
         backgroundColor: Colors.transparent,
-        loaderColor: HexColor('#6A88E5')
+        loaderColor: AppTheme.signatureColor
         // loadingText: Text(''),
         // styleTextUnderTheLoader: TextStyle(),
         // image: Image.network('https://i.imgur.com/TyCSG9A.png'),
         // photoSize: 100.0,
       )
     );
-  }
-}
-
-class HexColor extends Color {
-  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
-
-  static int _getColorFromHex(String hexColor) {
-    hexColor = hexColor.toUpperCase().replaceAll('#', '');
-    if (hexColor.length == 6) {
-      hexColor = 'FF' + hexColor;
-    }
-    return int.parse(hexColor, radix: 16);
   }
 }

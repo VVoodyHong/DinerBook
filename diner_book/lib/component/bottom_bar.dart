@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:diner_book/main.dart';
 import 'package:diner_book/app_theme.dart';
 
 class BottomBar extends StatefulWidget {
@@ -54,30 +53,32 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                         child: Row(
                           children: <Widget>[
                             Expanded(
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () =>{widget.changeIndex(0)},
                                 child: Container(
+                                  height: MediaQuery.of(context).size.height,
                                   alignment: Alignment.center,
                                   child: Text(
                                     '다이너북',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: widget.isSelectedIdx == 0 ? HexColor('#6A88E5') : null
+                                      color: widget.isSelectedIdx == 0 ? AppTheme.signatureColor : null
                                     ),
                                   )
                                 )
                               )
                             ),
                             Expanded(
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () =>{widget.changeIndex(1)},
                                 child: Container(
+                                  height: MediaQuery.of(context).size.height,
                                   alignment: Alignment.center,
                                   child: Text(
                                     '타임라인',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: widget.isSelectedIdx == 1 ? HexColor('#6A88E5') : null
+                                      color: widget.isSelectedIdx == 1 ? AppTheme.signatureColor : null
                                     ),
                                   )
                                 )
@@ -90,30 +91,32 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                               )).value * 64.0
                             ),
                             Expanded(
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () =>{widget.changeIndex(2)},
                                 child: Container(
+                                  height: MediaQuery.of(context).size.height,
                                   alignment: Alignment.center,
                                   child: Text(
                                     '채팅',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: widget.isSelectedIdx == 2 ? HexColor('#6A88E5') : null
+                                      color: widget.isSelectedIdx == 2 ? AppTheme.signatureColor : null
                                     ),
                                   )
                                 )
                               )
                             ),
                             Expanded(
-                              child: GestureDetector(
+                              child: InkWell(
                                 onTap: () =>{widget.changeIndex(3)},
                                 child: Container(
+                                  height: MediaQuery.of(context).size.height,
                                   alignment: Alignment.center,
                                   child: Text(
                                     '더보기',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
-                                      color: widget.isSelectedIdx == 3 ? HexColor('#6A88E5') : null
+                                      color: widget.isSelectedIdx == 3 ? AppTheme.signatureColor : null
                                     ),
                                   )
                                 )
@@ -159,7 +162,7 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                         gradient: LinearGradient(
                           colors: [
                             AppTheme.nearlyDarkBlue,
-                            HexColor('#6A88E5'),
+                            AppTheme.signatureColor,
                           ],
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:diner_book/main.dart';
+
 class AppTheme {
   AppTheme._();
+
+  static const Color signatureColor = Color(0xFF6A88E5);
 
   static const Color white = Color(0xFFFFFFFF);
   static const Color grey = Color(0xFF3A5160);
