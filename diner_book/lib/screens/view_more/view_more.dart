@@ -1,26 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:diner_book/component/header_bar.dart';
 
-class MyDinerBook extends StatefulWidget {
-  MyDinerBook({this.animationController});
+class ViewMore extends StatefulWidget {
+  ViewMore({this.animationController});
 
   final AnimationController animationController;
   @override
-  _MyDinerBookState createState() => _MyDinerBookState();
+  _ViewMoreState createState() => _ViewMoreState();
 }
 
-class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin {
+class _ViewMoreState extends State<ViewMore> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: HeaderBar(
-        title: '다이너북'
+        title: '더보기'
       ),
       body: Stack(
         children: <Widget>[
-          Center(child:Text('다이너북 페이지'))
+          Center(child:Text('더보기 페이지'))
         ]
       )
     );
