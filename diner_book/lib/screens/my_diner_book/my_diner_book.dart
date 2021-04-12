@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_below/dropdown_below.dart';
 
 import 'package:diner_book/component/header_bar.dart';
+import 'package:diner_book/common/images.dart';
 
 
 class MyDinerBook extends StatefulWidget {
@@ -65,7 +66,7 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                       CircleAvatar(
                         radius: 50,
                         backgroundColor: AppTheme.signatureColor,
-                        backgroundImage: NetworkImage('https://www.woolha.com/media/2020/03/eevee.png')
+                        backgroundImage: AssetImage(Images.sampleProfile)
                       ),
                       Expanded(
                         child: Column(
