@@ -183,7 +183,32 @@ class _BottomBarState extends State<BottomBar> with TickerProviderStateMixin {
                           splashColor: Colors.white.withOpacity(0.1),
                           highlightColor: Colors.transparent,
                           focusColor: Colors.transparent,
-                          onTap: () {},
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text("다이너북 추가"),
+                                  actions: <Widget>[ 
+                                    OutlinedButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
+                                      ),
+                                      child: Text(
+                                        "확인",
+                                        style: TextStyle(
+                                          color: AppTheme.white
+                                        )
+                                        ),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          },
                           child: Icon(
                             Icons.add,
                             color: AppTheme.white,

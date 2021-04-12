@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:diner_book/main.dart';
-
 class AppTheme {
   AppTheme._();
 
