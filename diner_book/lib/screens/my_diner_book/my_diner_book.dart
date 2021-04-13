@@ -18,6 +18,7 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
   final valueList = ['최신순', '거리순', '별점순'];
   List<DropdownMenuItem> dropdownItems;
   String selectedValue = '최신순';
+  bool showProfile = false;
 
   @override
   void initState() {
@@ -40,13 +41,14 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
 
   onChangeDropdown(selected) {
     setState(() {
-      selectedValue= selected;
+      selectedValue = selected;
     });
   }
 
 
   @override
   Widget build(BuildContext context) {
+    print(showProfile);
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: HeaderBar(
@@ -60,15 +62,15 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: showProfile ? EdgeInsets.symmetric(vertical: 20) : EdgeInsets.symmetric(vertical: 5), 
                   child:Row(
                   children:<Widget>[
-                      CircleAvatar(
+                      showProfile ? CircleAvatar(
                         radius: 50,
                         backgroundColor: AppTheme.signatureColor,
                         backgroundImage: AssetImage(Images.sampleProfile)
-                      ),
-                      Expanded(
+                      ) : Container(),
+                      showProfile ? Expanded(
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -158,61 +160,76 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                             ),
                           ]
                         )
-                      )
+                      ) : Container()
                     ]
                   )
                 ),
-                OutlinedButton(
-                  style: ButtonStyle(
-                    elevation: MaterialStateProperty.all<double>(4.0),
-                    backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
-                    shadowColor: MaterialStateProperty.all<Color>(AppTheme.grey)
-                  ),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text("프로필 편집"),
-                          actions: <Widget>[ 
-                            OutlinedButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
-                              ),
-                              child: Text(
-                                "확인",
-                                style: TextStyle(
-                                  color: AppTheme.white
-                                )
+                showProfile ? Container(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: OutlinedButton(
+                    style: ButtonStyle(
+                      elevation: MaterialStateProperty.all<double>(4.0),
+                      backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
+                      shadowColor: MaterialStateProperty.all<Color>(AppTheme.grey)
+                    ),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text("프로필 편집"),
+                            actions: <Widget>[ 
+                              OutlinedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
                                 ),
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                  child: Container(
-                    height: MediaQuery.of(context).size.height / 20,
-                    width: MediaQuery.of(context).size.width,
-                    alignment: Alignment.center,
-                    child: Text(
-                      '프로필 편집',
-                      style: TextStyle(
-                        color: AppTheme.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
+                                child: Text(
+                                  "확인",
+                                  style: TextStyle(
+                                    color: AppTheme.white
+                                  )
+                                  ),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height / 20,
+                      width: MediaQuery.of(context).size.width,
+                      alignment: Alignment.center,
+                      child: Text(
+                        '프로필 편집',
+                        style: TextStyle(
+                          color: AppTheme.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                        )
                       )
                     )
                   )
-                ),
+                ) : Container(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children:<Widget>[
+                    OutlinedButton(
+                      style: ButtonStyle(
+                        elevation: MaterialStateProperty.all<double>(1.5),
+                        backgroundColor: MaterialStateProperty.all<Color>(AppTheme.white),
+                      ),
+                      onPressed: () {setState(() {showProfile = !showProfile;});},
+                      child: Text(
+                        showProfile ? '프로필 접기' : '프로필 펼치기',
+                        style: TextStyle(
+                          color: Colors.black
+                        )
+                      )
+                    ),
                     Container(
-                      padding: EdgeInsets.only(top: 10),
                       child: DropdownBelow(
                         iconSize: 20,
                         itemWidth: 100,
