@@ -4,6 +4,8 @@ import 'package:dropdown_below/dropdown_below.dart';
 
 import 'package:diner_book/component/header_bar.dart';
 import 'package:diner_book/common/images.dart';
+import 'package:diner_book/models/diner_info.dart';
+import 'package:diner_book/component/bottom_bar.dart';
 
 
 class MyDinerBook extends StatefulWidget {
@@ -15,10 +17,12 @@ class MyDinerBook extends StatefulWidget {
 }
 
 class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin {
+  bool showProfile = true;
+  String selectedValue = '최신순';
   final valueList = ['최신순', '거리순', '별점순'];
   List<DropdownMenuItem> dropdownItems;
-  String selectedValue = '최신순';
-  bool showProfile = false;
+  String filter = '전체';
+  List<dynamic> dinerList = [];
 
   @override
   void initState() {
@@ -45,14 +49,27 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
     });
   }
 
+  Widget TextContainer(text) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.bold
+      )
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    print(showProfile);
+    dinerList = [];
+    for ( int i = 0; i < 25; i++) {
+      dinerList.add(DinerInfo(name: selectedValue + ' 식당'+(i+1).toString()));
+    }
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: HeaderBar(
-        title: '다이너북'
+        title: '다이너북',
+        isDinerBook: true,
       ),
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
@@ -81,13 +98,7 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                                   child: Container(
                                     padding: EdgeInsets.only(bottom: 10),
                                     child:Center(
-                                      child:Text(
-                                        '게시물',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        )
-                                      )
+                                      child:TextContainer('게시물')
                                     )
                                   )
                                 ),
@@ -95,26 +106,14 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                                   child: Container(
                                     padding: EdgeInsets.only(bottom: 10),
                                     child:Center(
-                                      child:Text(
-                                        '팔로워',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        )
-                                      )
+                                      child:TextContainer('팔로워')
                                     )
                                   )
                                 ),Expanded(
                                   child: Container(
                                     padding: EdgeInsets.only(bottom: 10),
                                     child:Center(
-                                      child:Text(
-                                        '팔로잉',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        )
-                                      )
+                                      child:TextContainer('팔로잉')
                                     )
                                   )
                                 ),
@@ -125,35 +124,17 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                               children:[
                                 Expanded(
                                   child:Center(
-                                    child:Text(
-                                      '11',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold
-                                      )
-                                    )
+                                    child:TextContainer('11')
                                   )
                                 ),
                                 Expanded(
                                   child:Center(
-                                    child:Text(
-                                      '183',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold
-                                      )
-                                    )
+                                    child:TextContainer('184')
                                   )
                                 ),
                                 Expanded(
                                   child:Center(
-                                    child:Text(
-                                      '171',
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold
-                                      )
-                                    )
+                                    child:TextContainer('168')
                                   )
                                 ),
                               ]
@@ -254,10 +235,63 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
                     )
                   ]
                 ),
+                Expanded(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 10),
+                    child: ListView.builder(
+                      itemCount:  dinerList.length,
+                      physics: BouncingScrollPhysics(),
+                      padding: EdgeInsets.only(bottom: BottomBar().preferredSize.height),
+                      itemBuilder: (context, index) {
+                        return (
+                          Container(
+                            height: MediaQuery.of(context).size.height / 7,
+                            padding: EdgeInsets.only(bottom: 10),
+                            child: OutlinedButton(
+                              style: ButtonStyle(
+                                elevation: MaterialStateProperty.all<double>(1.5),
+                                backgroundColor: MaterialStateProperty.all<Color>(AppTheme.white),
+                              ),
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(dinerList[index].name + " 페이지로 이동"),
+                                      actions: <Widget>[ 
+                                        OutlinedButton(
+                                          style: ButtonStyle(
+                                            backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
+                                          ),
+                                          child: Text(
+                                            "확인",
+                                            style: TextStyle(
+                                              color: AppTheme.white
+                                            )
+                                            ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          }
+                                        )
+                                      ]
+                                    );
+                                  }
+                                );
+                              },
+                              child: Text(
+                                dinerList[index].name,
+                                style: TextStyle(
+                                  color: Colors.black
+                                )
+                              )
+                            )
+                          )
+                        );
+                      }
+                    )
+                  )
+                )
               ]
-            ),
-            Center(
-              child: Text(selectedValue + ' 다이너북')
             )
           ]
         )

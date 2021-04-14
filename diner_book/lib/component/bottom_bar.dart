@@ -3,8 +3,11 @@ import 'dart:math' as math;
 
 import 'package:diner_book/app_theme.dart';
 
-class BottomBar extends StatefulWidget {
+class BottomBar extends StatefulWidget with PreferredSizeWidget {
   BottomBar({this.changeIndex, this.isSelectedIdx});
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 
   final int isSelectedIdx;
   final Function(int index) changeIndex;
