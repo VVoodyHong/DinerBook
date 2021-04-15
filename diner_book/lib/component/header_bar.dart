@@ -5,11 +5,15 @@ import 'package:diner_book/app_theme.dart';
 class HeaderBar extends StatefulWidget with PreferredSizeWidget {
   HeaderBar({
     this.title,
-    this.isDinerBook = false
+    this.filter,
+    this.isDinerBook = false,
+    this.onPressRightBtn
   });
 
   final String title;
+  final String filter;
   final bool isDinerBook;
+  Function onPressRightBtn;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -44,38 +48,13 @@ class _HeaderBarState extends State<HeaderBar>  {
                 widget.isDinerBook ? Row(
                   children: <Widget>[
                     InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("카테고리 선택"),
-                              actions: <Widget>[ 
-                                OutlinedButton(
-                                  style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all<Color>(AppTheme.signatureColor),
-                                  ),
-                                  child: Text(
-                                    "확인",
-                                    style: TextStyle(
-                                      color: AppTheme.white
-                                    )
-                                    ),
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  }
-                                )
-                              ]
-                            );
-                          }
-                        );
-                      },
+                      onTap: () {widget.onPressRightBtn();},
                       child: Container(
                         height: 40,
                         child: Row(
                           children: <Widget>[
                             Text(
-                              '전체',
+                              widget.filter,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold

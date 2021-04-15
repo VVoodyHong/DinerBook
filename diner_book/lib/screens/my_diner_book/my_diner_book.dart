@@ -21,8 +21,20 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
   String selectedValue = '최신순';
   final valueList = ['최신순', '거리순', '별점순'];
   List<DropdownMenuItem> dropdownItems;
+  List<dynamic> dinerList;
   String filter = '전체';
-  List<dynamic> dinerList = [];
+  List<String> filterList = [
+    '전체',
+    '한식',
+    '중식',
+    '양식',
+    '일식',
+    '해산물',
+    '패스트푸드',
+    '베이커리',
+    '커피',
+    '기타',
+  ];
 
   @override
   void initState() {
@@ -49,6 +61,53 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
     });
   }
 
+  onPressRightBtn() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Container(
+            width: MediaQuery.of(context).size.width / 4,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxHeight: MediaQuery.of(context).size.height / 4,
+                  ),
+                  child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: BouncingScrollPhysics(),
+                      itemCount: filterList.length,
+                      itemBuilder: (BuildContext context, int index){
+                        return Column(
+                          children: <Widget> [
+                            GestureDetector(
+                              onTap:() {
+                                  setState(() {
+                                    filter = filterList[index];
+                                  });
+                                  Navigator.pop(context);
+                                },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 10),
+                                child: TextContainer(filterList[index])
+                              )
+                            ),
+                            index != filterList.length - 1 ? Divider() : Container()
+                          ]
+                        );
+                      }
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      }
+    );
+  }
+
   Widget TextContainer(text) {
     return Text(
       text,
@@ -69,7 +128,9 @@ class _MyDinerBookState extends State<MyDinerBook> with TickerProviderStateMixin
       backgroundColor: Colors.transparent,
       appBar: HeaderBar(
         title: '다이너북',
+        filter: filter,
         isDinerBook: true,
+        onPressRightBtn: onPressRightBtn
       ),
       body: Container(
           padding: EdgeInsets.symmetric(horizontal: 15),
