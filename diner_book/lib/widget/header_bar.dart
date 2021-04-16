@@ -13,7 +13,7 @@ class HeaderBar extends StatefulWidget with PreferredSizeWidget {
   final String title;
   final String filter;
   final bool isDinerBook;
-  Function onPressRightBtn;
+  final Function onPressRightBtn;
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);

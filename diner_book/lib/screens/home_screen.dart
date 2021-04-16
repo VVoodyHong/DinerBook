@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:diner_book/app_theme.dart';
-import 'package:diner_book/component/bottom_bar.dart';
-import 'package:diner_book/screens/my_diner_book/my_diner_book.dart';
-import 'package:diner_book/screens/time_line/time_line.dart';
-import 'package:diner_book/screens/chatting/chatting.dart';
-import 'package:diner_book/screens/view_more/view_more.dart';
+import 'package:diner_book/widget/bottom_bar.dart';
+import 'package:diner_book/screens/my_diner_book_screen/my_diner_book.dart';
+import 'package:diner_book/screens/time_line_screen/time_line.dart';
+import 'package:diner_book/screens/chatting_screen/chatting.dart';
+import 'package:diner_book/screens/view_more_screen/view_more.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,19 +14,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   AnimationController animationController;
-
   int isSelectedIdx;
-
-  Widget tabBody = Container(
-    color: AppTheme.background,
-  );
+  Widget tabBody = Container(color: AppTheme.background);
+  List<Widget> tabBodyList;
 
   @override
   void initState() {
     isSelectedIdx = 0;
     animationController = AnimationController(
-        duration: const Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDinerBook(animationController: animationController);
+        duration: Duration(milliseconds: 600), vsync: this);
+    tabBody = MyDinerBookScreen(animationController: animationController);
+    tabBodyList = [
+      MyDinerBookScreen(animationController: animationController),
+      TimeLineScreen(animationController: animationController),
+      ChattingScreen(animationController: animationController),
+      ViewMoreScreen(animationController: animationController),
+    ];
     super.initState();
   }
 
@@ -47,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
             future:  getData(),
             builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
               if (!snapshot.hasData) {
-                return const SizedBox();
+                return SizedBox();
               } else {
                 return Stack(
                   children: <Widget>[
@@ -64,11 +67,12 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<bool> getData() async {
-    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    // await Future<dynamic>.delayed(Duration(milliseconds: 200));
     return true;
   }
 
   Widget bottomBar() {
+
     return Column(
       children: <Widget>[
         Expanded(
@@ -77,46 +81,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         BottomBar(
           isSelectedIdx: isSelectedIdx,
           changeIndex: (int index) {
-            if (index == 0) {
-              animationController.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = MyDinerBook(animationController: animationController);
-                  isSelectedIdx = index;
+            for ( int idx = 0; idx < tabBodyList.length; idx++) {
+              if (index == idx) {
+                animationController.reverse().then<dynamic>((data) {
+                  if (!mounted) {
+                    return;
+                  }
+                  setState(() {
+                    tabBody = tabBodyList[index];
+                    isSelectedIdx = index;
+                  });
                 });
-              });
-            } else if (index == 1) {
-              animationController.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = TimeLine(animationController: animationController);
-                  isSelectedIdx = index;
-                });
-              });
-            } else if (index == 2) {
-              animationController.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = Chatting(animationController: animationController);
-                  isSelectedIdx = index;
-                });
-              });
-            } else if (index == 3) {
-              animationController.reverse().then<dynamic>((data) {
-                if (!mounted) {
-                  return;
-                }
-                setState(() {
-                  tabBody = ViewMore(animationController: animationController);
-                  isSelectedIdx = index;
-                });
-              });
+                return;
+              }
             }
           }
         )
