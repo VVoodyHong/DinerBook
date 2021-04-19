@@ -155,7 +155,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             foodName: '피자',
             starRating: 4,
             updateAt: '2021. 04. 25',
-            address: '부산광역시 부산진구 전포대로 186',
+            address: '부산광역시 부산진구 전포대로 186번길 24',
             distance: 1.5,
             thumbnailPath: Images.sampleFoodPizza
             
