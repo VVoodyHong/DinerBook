@@ -141,7 +141,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             dinerName: '롯데리아',
             foodName: '한우불고기버거',
             starRating: 5,
-            updateAt: '2021. 03. 11',
+            updateAt: '2021. 03. 17',
             address: '부산광역시 금정구 장전로 13',
             distance: 9.2,
             thumbnailPath: Images.sampleFoodBurger
@@ -154,7 +154,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             dinerName: '미스터 피자',
             foodName: '피자',
             starRating: 4,
-            updateAt: '2021. 04. 22',
+            updateAt: '2021. 04. 25',
             address: '부산광역시 부산진구 전포대로 186',
             distance: 1.5,
             thumbnailPath: Images.sampleFoodPizza
@@ -180,10 +180,10 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             dinerName: '스푼 필라프',
             foodName: '까르보나라',
             starRating: 3,
-            updateAt: '2021. 01. 02',
+            updateAt: '2021. 01. 03',
             address: '부산광역시 중구 남포대로 22',
             distance: 10.5,
-            thumbnailPath: Images.sampleFoodPizza
+            thumbnailPath: Images.sampleFoodCarbonara
             
           )
         );
