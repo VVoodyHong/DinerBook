@@ -26,8 +26,12 @@ class _DinerViewState extends State<DinerView> {
           backgroundColor: MaterialStateProperty.all<Color>(AppTheme.white),
         ),
         onPressed: () {
-          Navigator.pushNamed(context, '/myDinerBook/detail', arguments: {
-            'title': widget.dinerInfo.dinerName
+          Navigator.pushNamed(
+            context, '/myDinerBook/detail',
+            arguments: {
+            'foodName': widget.dinerInfo.foodName,
+            'dinerName': widget.dinerInfo.dinerName
+
           });
         },
         child: Row(

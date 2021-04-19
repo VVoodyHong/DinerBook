@@ -107,7 +107,6 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                 )
                               )
                             ),
-                            // index != filterList.length - 1 ? Divider() : Container()
                           ]
                         );
                       }
@@ -144,7 +143,8 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             updateAt: '2021. 03. 17',
             address: '부산광역시 금정구 장전로 13',
             distance: 9.2,
-            thumbnailPath: Images.sampleFoodBurger
+            thumbnailPath: Images.sampleFoodBurger,
+            category: '패스트푸드'
             
           )
         );
@@ -157,7 +157,8 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             updateAt: '2021. 04. 25',
             address: '부산광역시 부산진구 전포대로 186번길 24',
             distance: 1.5,
-            thumbnailPath: Images.sampleFoodPizza
+            thumbnailPath: Images.sampleFoodPizza,
+            category: '패스트푸드'
             
           )
         );
@@ -170,7 +171,8 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             updateAt: '2021. 04. 11',
             address: '부산광역시 영도구 본산남길 11',
             distance: 18.2,
-            thumbnailPath: Images.sampleFoodChicken
+            thumbnailPath: Images.sampleFoodChicken,
+            category: '패스트푸드'
             
           )
         );
@@ -183,7 +185,8 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
             updateAt: '2021. 01. 03',
             address: '부산광역시 중구 남포대로 22',
             distance: 10.5,
-            thumbnailPath: Images.sampleFoodCarbonara
+            thumbnailPath: Images.sampleFoodCarbonara,
+            category: '양식'
             
           )
         );
@@ -254,7 +257,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                   children:[
                                     Expanded(
                                       child: Center(
-                                        child: textContainer('11')
+                                        child: textContainer(dinerList.length.toString())
                                       )
                                     ),
                                     Expanded(
@@ -365,6 +368,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                         )
                       ]
                     ),
+                    filter == '전체' ?
                     Expanded(
                       child: Container(
                         padding: EdgeInsets.only(top: 10),
@@ -378,6 +382,24 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                 dinerInfo: dinerList[index]
                               )
                             );
+                          }
+                        )
+                      )
+                    ) : Expanded(
+                      child: Container(
+                        padding: EdgeInsets.only(top: 10),
+                        child: ListView.builder(
+                          itemCount:  dinerList.length,
+                          physics: BouncingScrollPhysics(),
+                          padding: EdgeInsets.only(bottom: BottomBar().preferredSize.height),
+                          itemBuilder: (context, index) {
+                            if(dinerList[index].category == filter) {
+                              return (
+                                DinerView(
+                                  dinerInfo: dinerList[index]
+                                )
+                              );
+                            } else return Container();
                           }
                         )
                       )

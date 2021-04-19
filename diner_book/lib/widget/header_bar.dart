@@ -38,12 +38,25 @@ class _HeaderBarState extends State<HeaderBar>  {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text(
-                  widget.title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                  )
+                Row(
+                  children: <Widget> [
+                    !widget.isDinerBook ?
+                    IconButton(
+                      padding: EdgeInsets.only(right: 10),
+                      constraints: BoxConstraints(),
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ) : Container(),
+                    Text(
+                      widget.title,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      )
+                    )
+                  ],
                 ),
                 widget.isDinerBook ? Row(
                   children: <Widget>[

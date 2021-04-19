@@ -6,6 +6,7 @@ class DinerInfo {
   String address;
   double distance;
   String thumbnailPath;
+  String category;
 
   DinerInfo({
     this.dinerName,
@@ -14,6 +15,7 @@ class DinerInfo {
     this.updateAt,
     this.address,
     this.distance,
-    this.thumbnailPath
+    this.thumbnailPath,
+    this.category
   });
 }

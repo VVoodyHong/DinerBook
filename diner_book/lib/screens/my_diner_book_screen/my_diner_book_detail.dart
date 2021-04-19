@@ -14,18 +14,21 @@ class _MyDinerBookDetailScreenState extends State<MyDinerBookDetailScreen> with 
   @override
   Widget build(BuildContext context) {
     Map<String, dynamic> arguments = ModalRoute.of(context).settings.arguments;
-
     return Container(
       color:AppTheme.background,
       child: SafeArea(
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: HeaderBar(
-            title: arguments['title']
+            title: '다이너 상세'
           ),
           body: Stack(
             children: <Widget>[
-              Center(child:Text('다이너북 상세 페이지'))
+              Center(
+                child:Text(
+                  arguments['dinerName'] + ' ' + arguments['foodName']
+                )
+              )
             ]
           )
         )
