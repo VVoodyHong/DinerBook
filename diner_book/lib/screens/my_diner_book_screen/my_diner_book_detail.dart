@@ -1,7 +1,6 @@
-import 'dart:ffi';
+import 'package:flutter/material.dart';
 
 import 'package:diner_book/app_theme.dart';
-import 'package:flutter/material.dart';
 import 'package:diner_book/widget/header_bar.dart';
 
 class MyDinerBookDetailScreen extends StatefulWidget {

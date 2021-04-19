@@ -6,7 +6,7 @@ class AppTheme {
   static const Color signatureColor = Color(0xFF6A88E5);
 
   static const Color white = Color(0xFFFFFFFF);
-  static const Color grey = Color(0xFF3A5160);
+  static const Color grey = Color(0xFFC0C0C0);
   static const Color background = Color(0xFFF2F3F8);
 
   static const Color lightText = Color(0xFF4A6572);

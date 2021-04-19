@@ -1,3 +1,4 @@
+import 'package:diner_book/widget/diner_view.dart';
 import 'package:flutter/material.dart';
 import 'package:dropdown_below/dropdown_below.dart';
 
@@ -94,7 +95,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                 height: MediaQuery.of(context).size.height * 0.05,
                                 width: MediaQuery.of(context).size.width / 2,
                                 child: Center(
-                                    child: TextContainer(filterList[index])
+                                    child: textContainer(filterList[index])
                                 ),
                                 decoration: BoxDecoration(
                                   border: Border(
@@ -120,7 +121,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
     );
   }
 
-  Widget TextContainer(text) {
+  Widget textContainer(text) {
     return Text(
       text,
       style: TextStyle(
@@ -133,8 +134,60 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
   @override
   Widget build(BuildContext context) {
     dinerList = [];
-    for ( int i = 0; i < 25; i++) {
-      dinerList.add(DinerInfo(name: selectedValue + ' 식당'+(i+1).toString()));
+    for (int i = 0; i < 25; i++) {
+      if(i % 4 == 0) {
+        dinerList.add(
+          DinerInfo(
+            dinerName: '롯데리아',
+            foodName: '한우불고기버거',
+            starRating: 5,
+            updateAt: '2021. 03. 11',
+            address: '부산광역시 금정구 장전로 13',
+            distance: 9.2,
+            thumbnailPath: Images.sampleFoodBurger
+            
+          )
+        );
+      } else if (i % 4 == 1) {
+        dinerList.add(
+          DinerInfo(
+            dinerName: '미스터 피자',
+            foodName: '피자',
+            starRating: 4,
+            updateAt: '2021. 04. 22',
+            address: '부산광역시 부산진구 전포대로 186',
+            distance: 1.5,
+            thumbnailPath: Images.sampleFoodPizza
+            
+          )
+        );
+      } else if (i % 4 == 2) {
+        dinerList.add(
+          DinerInfo(
+            dinerName: '교촌 치킨',
+            foodName: '치킨',
+            starRating: 4.5,
+            updateAt: '2021. 04. 11',
+            address: '부산광역시 영도구 본산남길 11',
+            distance: 18.2,
+            thumbnailPath: Images.sampleFoodChicken
+            
+          )
+        );
+      } else if (i % 4 == 3) {
+        dinerList.add(
+          DinerInfo(
+            dinerName: '스푼 필라프',
+            foodName: '까르보나라',
+            starRating: 3,
+            updateAt: '2021. 01. 02',
+            address: '부산광역시 중구 남포대로 22',
+            distance: 10.5,
+            thumbnailPath: Images.sampleFoodPizza
+            
+          )
+        );
+      }
     }
 
     return Container(
@@ -174,23 +227,23 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                     Expanded(
                                       child: Container(
                                         padding: EdgeInsets.only(bottom: 10),
-                                        child:Center(
-                                          child:TextContainer('게시물')
+                                        child: Center(
+                                          child: textContainer('다이너')
                                         )
                                       )
                                     ),
                                     Expanded(
                                       child: Container(
                                         padding: EdgeInsets.only(bottom: 10),
-                                        child:Center(
-                                          child:TextContainer('팔로워')
+                                        child: Center(
+                                          child: textContainer('팔로워')
                                         )
                                       )
                                     ),Expanded(
                                       child: Container(
                                         padding: EdgeInsets.only(bottom: 10),
-                                        child:Center(
-                                          child:TextContainer('팔로잉')
+                                        child: Center(
+                                          child: textContainer('팔로잉')
                                         )
                                       )
                                     ),
@@ -200,18 +253,18 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                   children:[
                                     Expanded(
-                                      child:Center(
-                                        child:TextContainer('11')
+                                      child: Center(
+                                        child: textContainer('11')
                                       )
                                     ),
                                     Expanded(
-                                      child:Center(
-                                        child:TextContainer('184')
+                                      child: Center(
+                                        child: textContainer('184')
                                       )
                                     ),
                                     Expanded(
-                                      child:Center(
-                                        child:TextContainer('168')
+                                      child: Center(
+                                        child: textContainer('168')
                                       )
                                     ),
                                   ]
@@ -321,26 +374,8 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                           padding: EdgeInsets.only(bottom: BottomBar().preferredSize.height),
                           itemBuilder: (context, index) {
                             return (
-                              Container(
-                                height: MediaQuery.of(context).size.height / 7,
-                                padding: EdgeInsets.only(bottom: 10),
-                                child: OutlinedButton(
-                                  style: ButtonStyle(
-                                    elevation: MaterialStateProperty.all<double>(1.5),
-                                    backgroundColor: MaterialStateProperty.all<Color>(AppTheme.white),
-                                  ),
-                                  onPressed: () {
-                                    Navigator.pushNamed(context, '/myDinerBook/detail', arguments: {
-                                      'title': dinerList[index].name
-                                    });
-                                  },
-                                  child: Text(
-                                    dinerList[index].name,
-                                    style: TextStyle(
-                                      color: Colors.black
-                                    )
-                                  )
-                                )
+                              DinerView(
+                                dinerInfo: dinerList[index]
                               )
                             );
                           }
