@@ -7,12 +7,14 @@ class HeaderBar extends StatefulWidget with PreferredSizeWidget {
     this.title,
     this.filter,
     this.isDinerBook = false,
+    this.backBtn = false,
     this.onPressRightBtn
   });
 
   final String title;
   final String filter;
   final bool isDinerBook;
+  final bool backBtn;
   final Function onPressRightBtn;
 
   @override
@@ -40,7 +42,7 @@ class _HeaderBarState extends State<HeaderBar>  {
               children: <Widget>[
                 Row(
                   children: <Widget> [
-                    !widget.isDinerBook ?
+                    widget.backBtn ?
                     IconButton(
                       padding: EdgeInsets.only(right: 10),
                       constraints: BoxConstraints(),

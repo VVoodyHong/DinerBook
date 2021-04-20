@@ -1,4 +1,3 @@
-import 'package:diner_book/common/images.dart';
 import 'package:flutter/material.dart';
 
 import 'package:diner_book/app_theme.dart';
@@ -29,13 +28,13 @@ class _DinerViewState extends State<DinerView> {
           Navigator.pushNamed(
             context, '/myDinerBook/detail',
             arguments: {
-            'foodName': widget.dinerInfo.foodName,
-            'dinerName': widget.dinerInfo.dinerName
+            'dinerInfo': widget.dinerInfo
 
           });
         },
         child: Row(
           children: <Widget>[
+            widget.dinerInfo.thumbnailPath != '' ?
             Container(
               height: MediaQuery.of(context).size.height / 10,
               width: MediaQuery.of(context).size.height / 10,
@@ -46,6 +45,22 @@ class _DinerViewState extends State<DinerView> {
                     widget.dinerInfo.thumbnailPath
                   ),
                   fit: BoxFit.cover
+                )
+              )
+            ) :
+            Container(
+              height: MediaQuery.of(context).size.height / 10,
+              width: MediaQuery.of(context).size.height / 10,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: AppTheme.signatureColor
+              ),
+              child: Center(
+                child: Text(
+                  'No Image',
+                  style: TextStyle(
+                    color: Colors.white
+                  )
                 )
               )
             ),
@@ -86,7 +101,7 @@ class _DinerViewState extends State<DinerView> {
                                 widget.dinerInfo.starRating.toString(),
                                 style: TextStyle(
                                   color: Colors.black,
-                                  fontWeight: FontWeight.bold,
+                                  // fontWeight: FontWeight.w400,
                                 ),
                               )
                             ),
@@ -107,20 +122,48 @@ class _DinerViewState extends State<DinerView> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Flexible(
-                        child: Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 0, 15),
-                          child: Text(
-                            widget.dinerInfo.address,
-                            style: TextStyle(
-                              color: AppTheme.grey
-                            ),
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        )
+                      Row(
+                        children: <Widget>[
+                          Container(
+                            padding: EdgeInsets.fromLTRB(10, 0, 0, 15),
+                            child: Icon(
+                              Icons.favorite,
+                              color: AppTheme.signatureColor,
+                              size: 15,
+                            )
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(3, 0, 0, 15),
+                            child: Text(
+                              widget.dinerInfo.likeCount.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(10, 0, 0, 13),
+                            child: Icon(
+                              Icons.comment_outlined,
+                              color: AppTheme.signatureColor,
+                              size: 15,
+                            )
+                          ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(3, 0, 0, 15),
+                            child: Text(
+                              widget.dinerInfo.commentCount.toString(),
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            )
+                          ),
+                        ]
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(5, 0, 10, 15),
+                        padding: EdgeInsets.fromLTRB(0, 0, 10, 15),
                         child: Text(
                           widget.dinerInfo.starRating.toString() + 'km',
                           style: TextStyle(

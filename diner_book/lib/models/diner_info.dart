@@ -1,21 +1,27 @@
 class DinerInfo {
+  int likeCount;
+  int commentCount;
+  double starRating;
+  double distance;
   String dinerName;
   String foodName;
-  double starRating;
   String updateAt;
   String address;
-  double distance;
   String thumbnailPath;
   String category;
+  String comment;
 
   DinerInfo({
+    this.likeCount,
+    this.commentCount,
+    this.starRating,
+    this.distance,
     this.dinerName,
     this.foodName,
-    this.starRating,
     this.updateAt,
     this.address,
-    this.distance,
     this.thumbnailPath,
-    this.category
+    this.category,
+    this.comment
   });
 }
