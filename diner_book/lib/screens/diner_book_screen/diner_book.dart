@@ -9,15 +9,15 @@ import 'package:diner_book/widget/header_bar.dart';
 import 'package:diner_book/widget/bottom_bar.dart';
 
 
-class MyDinerBookScreen extends StatefulWidget {
+class DinerBookScreen extends StatefulWidget {
   final AnimationController animationController;
 
-  MyDinerBookScreen({this.animationController});
+  DinerBookScreen({this.animationController});
   @override
-  _MyDinerBookScreenState createState() => _MyDinerBookScreenState();
+  _DinerBookScreenState createState() => _DinerBookScreenState();
 }
 
-class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProviderStateMixin {
+class _DinerBookScreenState extends State<DinerBookScreen> {
   bool showProfile = true;
   String selectedValue = '최신순';
   final valueList = ['최신순', '거리순', '별점순'];
@@ -238,7 +238,7 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: showProfile ? EdgeInsets.symmetric(vertical: 20) : EdgeInsets.symmetric(vertical: 5), 
+                  padding: showProfile ? EdgeInsets.only(top: 20, bottom: 10) : EdgeInsets.symmetric(vertical: 5), 
                   child:Row(
                   children:<Widget>[
                       showProfile ? CircleAvatar(
@@ -304,6 +304,30 @@ class _MyDinerBookScreenState extends State<MyDinerBookScreen> with TickerProvid
                     ]
                   )
                 ),
+                showProfile ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        '홍정욱',
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold
+                        )
+                      )
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        '식사에 진심인 자들을 위한 다이너북',
+                        style: TextStyle(
+                          fontSize: 15,
+                        )
+                      )
+                    )
+                  ],
+                ) : Container(),
                 showProfile ? Container(
                   padding: EdgeInsets.only(bottom: 10),
                   child: OutlinedButton(

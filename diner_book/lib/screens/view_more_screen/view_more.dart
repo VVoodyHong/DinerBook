@@ -11,7 +11,7 @@ class ViewMoreScreen extends StatefulWidget {
   _ViewMoreScreenState createState() => _ViewMoreScreenState();
 }
 
-class _ViewMoreScreenState extends State<ViewMoreScreen> with TickerProviderStateMixin {
+class _ViewMoreScreenState extends State<ViewMoreScreen> {
 
   @override
   Widget build(BuildContext context) {

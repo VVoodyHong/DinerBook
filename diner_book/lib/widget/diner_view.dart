@@ -26,7 +26,7 @@ class _DinerViewState extends State<DinerView> {
         ),
         onPressed: () {
           Navigator.pushNamed(
-            context, '/myDinerBook/detail',
+            context, '/DinerBook/detail',
             arguments: {
             'dinerInfo': widget.dinerInfo
 

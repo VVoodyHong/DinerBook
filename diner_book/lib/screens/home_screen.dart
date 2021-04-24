@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:diner_book/app_theme.dart';
 import 'package:diner_book/widget/bottom_bar.dart';
-import 'package:diner_book/screens/my_diner_book_screen/my_diner_book.dart';
+import 'package:diner_book/screens/diner_book_screen/diner_book.dart';
 import 'package:diner_book/screens/time_line_screen/time_line.dart';
 import 'package:diner_book/screens/chatting_screen/chatting.dart';
 import 'package:diner_book/screens/view_more_screen/view_more.dart';
@@ -23,9 +23,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     isSelectedIdx = 0;
     animationController = AnimationController(
         duration: Duration(milliseconds: 600), vsync: this);
-    tabBody = MyDinerBookScreen(animationController: animationController);
+    tabBody = DinerBookScreen(animationController: animationController);
     tabBodyList = [
-      MyDinerBookScreen(animationController: animationController),
+      DinerBookScreen(animationController: animationController),
       TimeLineScreen(animationController: animationController),
       ChattingScreen(animationController: animationController),
       ViewMoreScreen(animationController: animationController),

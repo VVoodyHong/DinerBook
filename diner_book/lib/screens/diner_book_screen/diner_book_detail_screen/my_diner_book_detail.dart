@@ -5,13 +5,13 @@ import 'package:diner_book/models/diner_info.dart';
 import 'package:diner_book/app_theme.dart';
 import 'package:diner_book/widget/header_bar.dart';
 
-class MyDinerBookDetailScreen extends StatefulWidget {
+class DinerBookDetailScreen extends StatefulWidget {
 
   @override
-  _MyDinerBookDetailScreenState createState() => _MyDinerBookDetailScreenState();
+  _DinerBookDetailScreenState createState() => _DinerBookDetailScreenState();
 }
 
-class _MyDinerBookDetailScreenState extends State<MyDinerBookDetailScreen> with TickerProviderStateMixin {
+class _DinerBookDetailScreenState extends State<DinerBookDetailScreen> {
   bool favorite = false;
   FocusNode focusNode;
 

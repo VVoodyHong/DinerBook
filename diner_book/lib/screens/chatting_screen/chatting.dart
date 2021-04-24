@@ -11,7 +11,7 @@ class ChattingScreen extends StatefulWidget {
   _ChattingScreenState createState() => _ChattingScreenState();
 }
 
-class _ChattingScreenState extends State<ChattingScreen> with TickerProviderStateMixin {
+class _ChattingScreenState extends State<ChattingScreen> {
 
   @override
   Widget build(BuildContext context) {

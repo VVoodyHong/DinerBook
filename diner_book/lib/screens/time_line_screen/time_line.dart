@@ -11,7 +11,7 @@ class TimeLineScreen extends StatefulWidget {
   _TimeLineScreenState createState() => _TimeLineScreenState();
 }
 
-class _TimeLineScreenState extends State<TimeLineScreen> with TickerProviderStateMixin {
+class _TimeLineScreenState extends State<TimeLineScreen> {
 
   @override
   Widget build(BuildContext context) {

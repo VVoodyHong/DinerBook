@@ -1,6 +1,7 @@
+import 'package:diner_book/screens/diner_book_screen/write_diner_book_screen/write_diner_book.dart';
 import 'package:flutter/material.dart';
 
-import 'package:diner_book/screens/my_diner_book_screen/my_diner_book_detail.dart';
+import 'package:diner_book/screens/diner_book_screen/diner_book_detail_screen/my_diner_book_detail.dart';
 // import 'package:diner_book/screens/my_diner_book_screen/my_diner_book.dart';
 // import 'package:diner_book/screens/chatting_screen/chatting.dart';
 // import 'package:diner_book/screens/time_line_screen/time_line.dart';
@@ -34,13 +35,10 @@ class RouteConfiguration {
   /// take priority.
   
   static List<Path> paths = [
-    Path(
-      '/myDinerBook/detail',
-      (context, match) => MyDinerBookDetailScreen()
-    ),
+    
     // Path(
-    //   '/myDinerBook',
-    //   (context, match) => MyDinerBookScreen()
+    //   '/DinerBook',
+    //   (context, match) => DinerBookScreen()
     // ),
     // Path(
     //   '/timeLine',
@@ -54,6 +52,14 @@ class RouteConfiguration {
     //   '/viewMore',
     //   (context, match) => ViewMoreScreen()
     // )
+    Path(
+      '/DinerBook/detail',
+      (context, match) => DinerBookDetailScreen()
+    ),
+    Path(
+      '/DinerBook/write',
+      (context, match) => WriteDinerBookScreen()
+    ),
   ];
 
   /// The route generator callback used when the app is navigated to a named
